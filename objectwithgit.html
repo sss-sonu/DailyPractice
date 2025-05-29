@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="git"></p>
+    <script>
+        const person={'fname':'john', "lname":'Doe '};
+        Object.defineProperty(person,'fullname()', {get: function () {return this.fname+' ' +this.lname}});
+        Object.defineProperty(person,'lname',{enumurable:false});
+        console.log(Object.keys(person));
+        console.log(Object.getOwnPropertyNames(person));
+        Object.defineProperty(person, 'lname',{value:'Smith'})
+    </script>
+</body>
+</html>

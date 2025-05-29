@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="bookName" placeholder="Name of the book">
+    <input type="text" id="bookAuthor" placeholder="Writer Name">
+    <input type="number" id="bookPages" placeholder="Number of pages book contains">
+
+    <p id="para">Do you want to add other property</p>
+    <button type="button" id="btn1" onclick="forYes()">Yes</button>
+    <button type="button" id="btn2" onclick="forNo()">No</button>
+    <button type="button" onclick="done()">Done</button>
+    <input type="text" id="anotherProp" placeholder="New Property">
+    <script>
+        let value1,bookName, bookAuthor,bookPages;
+         document.getElementById('anotherProp').style.display='none';
+        function Book(name,author,pages){
+            this.name=name;
+            this.author=author;
+            this.pages=pages;
+        }
+        
+        function forYes(){
+            document.getElementById('para').style.display='none';
+            document.getElementById('btn1').style.display='none';
+            document.getElementById('btn2').style.display='none';
+            document.getElementById('para').style.display='none';
+            document.getElementById('anotherProp').style.display='block';
+        }
+        function forNo(){
+            document.getElementById('btn1').style.display='none';
+            document.getElementById('btn2').style.display='none';
+            document.getElementById('para').style.display='none';
+        }
+        function done(){
+            bookName=document.getElementById('bookName').value;
+            bookAuthor=document.getElementById('bookAuthor').value;
+            bookPages=document.getElementById('bookPages').value;
+            value1=document.getElementById('anotherProp').value;
+            const book1=new Book(bookName, bookAuthor,bookPages)
+            Object.defineProperty(book1,'anotherProp',{value:value1});
+            console.log(Object.keys(book1));
+            console.log(Object.getOwnPropertyNames(book1));
+            console.log(book1);
+        }
+         
+    </script>
+</body>
+</html>
