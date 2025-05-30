@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <script>
+        /*Hoisting of a function is allowed in js*/
+       document.getElementById('demo').innerHTML=sum(1,2,3,4,5,6,7,8,9,10);
+        /*Function to find the sum of arguments passed*/
+        function sum(...args){
+            let total=0;
+            for(let i=0; i<arguments.length; i++){
+                total=arguments[i]+total;
+                if(i==arguments.length-1)
+                    return total;
+            }
+        }
+
+        /*Arrow Functions*/
+       const greet=()=>{return 'Good Afternoon!'}
+       document.getElementById('demo2').innerHTML=greet();
+
+        /*anonynmous(function don't have name) 
+        self-invoke(don't need to call these kind of function ) function */
+       (function (){
+          document.getElementById('demo1').innerHTML=2*8;   
+       })();
+       /* this in Global function*/
+       function glob(){
+        return this;
+       }
+       /* this in object method*/
+       const obj={
+            name:'Sonia',
+            course:'MERN',
+            conclusion:function (){ return this;},
+            conclusion1:()=>{ return this;}
+       }
+       /* obj.conclusion1() is returning [object Window] because here i have used
+       arrow function and arrow function bu default belongs to window object 
+    {does NOT have its own this; it takes it from the enclosing scope (likely window in this case) }*/
+       document.getElementById('demo3').innerHTML=glob()+obj.conclusion()+obj.conclusion1();
+    </script>
+</body>
+</html>
