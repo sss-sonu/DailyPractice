@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person ={
+           
+            fullName: function(){
+                return this.fName+' '+this.lName;
+            }
+        }
+        const person2={
+            fName:'Sam',
+            lName:'Doe'
+        }
+        /* this line means i am calling fullName() from person object but call(person2) means i set the value of this as person2*/
+        console.log(person.fullName.call(person2));
+
+        const student={
+            name:'Sonia',
+            age:21
+        }
+        const stuDetails={
+            details:function (course,college) {return this.name+' '+ this.age+ ' '+course+' '+college}
+        }
+        console.log(stuDetails.details.call(student,"BTech.","Govt. College Dharamshala"));
+        console.log(stuDetails.details.apply(student,["BTech.","Govt. College Dharamshala"]));
+    </script>
+</body>
+</html>
