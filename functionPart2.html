@@ -29,6 +29,38 @@
         }
         console.log(stuDetails.details.call(student,"BTech.","Govt. College Dharamshala"));
         console.log(stuDetails.details.apply(student,["BTech.","Govt. College Dharamshala"]));
+
+        /* example of closure: when we call  new_function=add() */
+        console.log("closure in functions");
+        function add(){
+            let add=0;
+            add++;
+            return function inner(){return add;}
+        }
+        let new_function=add();/*here we are calling add() function and  new_function=add() this does not 
+        means that new_function contains all the add() definition  but it means that whenever we call new_function then the
+        return statement of the add() will run, not the whole function   */
+        console.log(new_function());
+        console.log(new_function());
+        console.log(new_function());
+        console.log(new_function());
+        /*2nd example of closure*/
+        function add1(){
+            let add=0;
+           
+            return function inner(){
+                 add++;
+                 return add;
+            }
+        }
+        let new_function1=add1();
+        console.log("Second Example");
+        console.log(new_function1());
+        console.log(new_function1());
+        console.log(new_function1());
+        console.log(new_function1());
+
+      
     </script>
 </body>
 </html>
