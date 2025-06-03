@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <script>
+        /*Creation of a class
+        while creating a class it is important to define a constructor()
+        in which proprties are written and we can create a more methods after constructor methods */
+        class student{
+            constructor(name,birthYear){
+                this.stuName=name;
+                this.year=birthYear;
+            }
+            age(){
+                const date=new Date();
+                return date.getFullYear()-this.year;
+            }
+            output(){
+                return "Name of student is "+this.stuName+" and the age is "+this.age();
+            }
+            
+        }
+        const obj1=new student('John',2004);
+        document.getElementById("demo").innerHTML=obj1.output();
+
+        /*Inheritance*/
+        class father{
+            constructor(eyeColor){
+                this.color=eyeColor;
+            }
+            eye_color(){
+                return " has "+ this.color+' eye color.';
+            }
+        }
+        class daughter extends father{
+            constructor(name,eyecolor){
+                super(eyecolor);
+                this.name=name;
+            }
+            details(){
+                return this.name+ this.eye_color();
+            }
+        }
+       
+        const obj3=new daughter('Samy','blue');
+        document.getElementById("demo1").innerHTML=obj3.details();
+
+        /*another example of inheritance*/
+        class Area{
+            constructor(sidelen){
+                this.side=sidelen;
+            }
+        }
+        class Square extends Area {
+            constructor(sidelen){
+                super(sidelen);
+            }
+            squareArea(){
+                return "Area of Square is: "+this.side*this.side;
+            }
+        }
+        class Cube extends Area {
+            constructor(sidelen){
+                super(sidelen);
+            }
+            cubeArea(){
+                return " Area of Cube is: "+6*this.side*this.side;
+            }
+        }
+        const obj4=new Cube(5);
+        const obj5=new Square(4);
+        document.getElementById('demo2').innerHTML=obj4.cubeArea()+"<br>"+obj5.squareArea();
+
+        /*Example*/
+        class Vehicle{
+            constructor(brand,year){
+                this.brand=brand;
+                this.year=year;
+            }
+            displayInfo(){
+                return "Brand: "+this.brand+", Year: "+this.year;
+            }
+        }
+        class Car extends Vehicle{
+            constructor(brand,year,model){
+                super(brand,year);
+                this.model=model;
+            }
+            displayCarInfo(){
+                return this.displayInfo()+"<br> Model: " +this.model;
+            }
+        }
+        class Bike extends Vehicle{
+           constructor(brand,year,model){
+                super(brand,year);
+                this.model=model;
+            }
+            displayBikeInfo(){
+                return this.displayInfo()+"<br> Model: " +this.model;
+            }
+        }
+        const myBike = new Bike("Yamaha", 2023, "Sport");
+        const newCar=new Car("Toyota",2022,"Corolla")
+        document.getElementById("demo2").innerHTML+="<br>"+newCar.displayCarInfo();
+        document.getElementById("demo2").innerHTML+="<br>"+myBike.displayBikeInfo();
+    </script>
+</body>
+</html>
