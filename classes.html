@@ -110,6 +110,43 @@
         const newCar=new Car("Toyota",2022,"Corolla")
         document.getElementById("demo2").innerHTML+="<br>"+newCar.displayCarInfo();
         document.getElementById("demo2").innerHTML+="<br>"+myBike.displayBikeInfo();
+
+        /*Get and set in classes*/
+        class Fruits{
+            constructor(name,fruitname){
+                this.name=name;
+                this.fruitname=fruitname;
+            } 
+        
+            get output(){
+                return this.name+" likes "+this.fruitname;
+            }
+            set output(y){
+                this.fruitname=y;
+            }
+        }
+        const fruit1=new Fruits("Jimmy","apples");
+        console.log("Examples of get,set");
+        console.log(fruit1.output);
+        fruit1.output="kiwi"
+        console.log(fruit1.output);
+
+        /*Static methods: in a class static methods are not accessed by the objects 
+        these can only access by class*/
+        class stat{
+            constructor(dogname,breed){
+                this.name=dogname;
+                this.breed=breed;
+            }
+            static new1(x){
+                 return x.name +" is of "+x.breed+" breed"; 
+            }
+        }
+        const dog1=new stat('Leo','Pug');
+        //This is showing undefined because object cannot access the static properties or methods of a class
+        console.log(dog1.new1);
+
+        console.log(stat.new1(dog1));
     </script>
 </body>
 </html>
