@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <p>Enter your next birthday details:</p>
+        <input id="date" placeholder="Enter Date">
+        <input id="month" placeholder="Enter Month">
+        <input id="year" placeholder="Enter Year">
+        <button onclick="next()">Done</button>
+    </div>
+    <p id="demo"></p>
+    
+    <script>
+        document.getElementById("demo").style.display="none";
+        function next(){
+            document.getElementById("main").style.display="none";
+            document.getElementById("demo").style.display="block";
+
+            let date=document.getElementById('date').value;
+            let month=document.getElementById('month').value-1;
+            let year=document.getElementById('year').value;
+            
+            let bdydate=new Date(year,month,date);
+            let Interval=setInterval(()=>{
+                 //console.log(bdydate-currDate);
+                let currDate=new Date();
+                let sec=Math.floor(((bdydate-currDate)/1000));
+                let min=Math.floor(((bdydate-currDate)/1000)/60);
+                let hours= Math.floor((((bdydate-currDate)/1000)/60)/60);
+                document.getElementById('demo').innerHTML="Time left: "+hours+':'+min+":"+sec;
+                if(sec<=0){
+                    sec=min=hours=0;
+                     document.getElementById('demo').innerHTML="Happy Birthday";
+                }
+                },1000); 
+            }
+         
+    </script>
+</body>
+</html>
