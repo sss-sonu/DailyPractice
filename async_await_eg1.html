@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="lat" placeholder="Enter Latitude">
+    <input id="lon" placeholder="Enter Longitude">
+    <button onclick="submit()">Submit</button>
+    <p id="date"></p>
+    <p id="output"></p>
+    <script>
+        function apiData(){
+            return new Promise((resolve,reject)=>{
+                const xhr= new XMLHttpRequest();
+                let lat=document.getElementById("lat").value;
+                let lon=document.getElementById("lon").value;
+                xhr.open('GET',"https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lon+"&current_weather=true&hourly=temperature_2m");
+                xhr.onload=function(){
+                    if(xhr.status==200){
+                        resolve(JSON.parse(xhr.responseText));
+                    }
+                    else{
+                        reject("Can't find API");
+                    }
+                };
+                xhr.send();
+            });
+        }
+        async function submit(){
+            document.getElementById("output").innerHTML="Please Wait...";
+            const output= await apiData();
+            
+            setInterval(()=>{
+                const date=new Date();
+                document.getElementById('date').innerHTML=date;
+                
+            },1000);
+            for(let i=0;i<24;i++){
+                document.getElementById("output").innerHTML+="<br> <b>Time: </b>"+output.hourly.time[i]+"  <b>Temperature: </b>"+output.hourly.temperature_2m[i]+"°C";
+            }
+            
+        }
+    </script>
+</body>
+
+</html>
