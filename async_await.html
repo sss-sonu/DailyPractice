@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        async function f1(){
+            let myPromise=new Promise((resolve,reject)=> {
+                resolve("Hello");
+            });
+            let forawait=await myPromise;
+            console.log(forawait);
+        }
+        f1();
+
+
+        async function f2(){
+            let myPromise2=new Promise((resolve,reject)=>{
+                obj1={name:'Riya',age:'20'};
+                setTimeout(()=>resolve("Name: "+obj1.name+", age: "+obj1.age),2000);
+            });
+            document.getElementById('demo').innerHTML="Wait for 2 sec..";
+            let forawait=await myPromise2;
+            document.getElementById('demo').innerHTML+="<br>"+forawait;
+        }
+        f2();
+    </script>
+    
+</body>
+</html>
